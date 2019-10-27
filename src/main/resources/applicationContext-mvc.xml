@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <!-- 配置SpringMvc -->
+    <context:component-scan base-package="com.ifueen.aishell.web"/>
+    <!-- 静态资源放行-->
+    <mvc:default-servlet-handler/>
+
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>application/json; charset=UTF-8</value>
+                        <value>application/x-www-form-urlencoded; charset=UTF-8</value>
+                    </list>
+                </property>
+                <!-- No serializer:配置 objectMapper 为我们自定义扩展后的 CustomMapper,解决了返回对象有关系对象的报错问题 -->
+                <property name="objectMapper">
+                    <bean class="com.ifueen.aishell.commons.CustomMapper"></bean>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+    <!-- 视图解析器 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/views/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+    <!--5.上传解析器 CommonsMultipartResolver-->
+    <!-- 注意:上传解析器的id必需:multipartResolver -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize">
+            <value>10485760</value>
+        </property>
+    </bean>
+
+    <!--配置一下beanName的视图解析器
+        p:order="0":设置属性优先级
+    -->
+    <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="0" />
+
+    <!-- 对于easypoi中准备发的视图(view)的扫描 -->
+    <context:component-scan base-package="cn.afterturn.easypoi.view" />
+    <!-- 扫描commons包 -->
+    <context:component-scan base-package="com.ifueen.aishell.commons"/>
+</beans>

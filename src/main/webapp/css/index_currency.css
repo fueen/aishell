@@ -1,0 +1,52 @@
+.datagrid-header-row, .datagrid-row {
+    height: 50px;
+}
+.datagrid-row-selected {
+    background: #f2658d;
+}
+.datagrid-btable{
+    text-align: center;
+    font-family: '微软雅黑';
+    font-size: 20px;
+    font-weight: bold;
+}
+.datagrid-header-row{
+    text-align: center;
+    font-family: '华文中宋';
+    font-weight: bold;
+    font-size: 28px;
+}
+.validatebox-invalid {
+    background-color: #fff;
+    color: #000;
+}
+.datagrid-header td, .datagrid-body td, .datagrid-footer td {
+    border-width: 0 0px 3px 0;
+    border-style: solid;
+    border-color: #f2658d;
+}
+.top{
+    background-color: #323232;
+    height: 50px;
+    color: #fff;
+    border-radius: 10px;
+}
+.easyui-linkbutton{
+    font-family: '微软雅黑';
+    font-weight: bold;
+    color: #000;
+
+}
+.senior{
+    font-family: '微软雅黑';
+    font-weight: bold;
+    color: #000;
+}
+.panel-header, .panel-body {
+    /* border-color: #95B8E7; */
+    border: 1px #fff solid;
+    border-radius: 10px;
+}
+.panel-header, .panel-body {
+    border-color: #fff;
+}
