@@ -1,0 +1,5 @@
+# 忽略存在版本安全隐患的jar包
+spring-data-jpa
+commons-fileupload
+jackson-databind
+spring-core
